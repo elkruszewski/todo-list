@@ -1,0 +1,22 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let task of tasks">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ task }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <div *ngFor="let taskContent of tasksContent">
+        <mat-list-item>
+          <i class="material-icons" color="yellow">star</i>
+          {{ taskContent.name }}
+          <mat-chip-list>
+            <mat-chip color="primary">{{ taskContent.taskTopic }}</mat-chip>
+          </mat-chip-list>
+          {{ taskContent.deadline }}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>
