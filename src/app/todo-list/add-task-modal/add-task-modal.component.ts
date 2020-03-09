@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Task } from "src/app/models/task";
-import * as uuid from "uuid";
+import { formatDate } from "@angular/common";
 @Component({
   selector: "app-add-task-modal",
   templateUrl: "./add-task-modal.component.html",
@@ -17,12 +17,9 @@ export class AddTaskModalComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.createForm();
-    console.log("formularz utworzony", this.form);
   }
 
-  ngOnInit(): void {
-    console.log(this.form);
-  }
+  ngOnInit(): void {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -41,7 +38,7 @@ export class AddTaskModalComponent implements OnInit {
     const taskObject: Task = {
       id: Date.now(),
       name: this.form.get("name").value,
-      deadline: this.form.get("deadline").value,
+      deadline: formatDate(this.form.get("deadline").value, "yyyy/MM/dd", "en"),
       taskTopic: this.form.get("taskTopic").value
     };
 

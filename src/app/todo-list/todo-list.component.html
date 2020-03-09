@@ -14,7 +14,7 @@
     </mat-expansion-panel-header>
     <mat-list>
       <div *ngFor="let todayTask of todayTasks">
-        <mat-list-item>
+        <mat-list-item (click)="checkRow(todayTask)">
           <i class="material-icons">star</i>
           {{ todayTask.name }}
           <span class="details">
@@ -40,7 +40,7 @@
 
     <mat-list>
       <div *ngFor="let tomorrowTask of tomorrowTasks">
-        <mat-list-item>
+        <mat-list-item (click)="checkRow(tomorrowTask)">
           <i class="material-icons">star</i>
           {{ tomorrowTask.name }}
           <span class="details">
@@ -68,7 +68,7 @@
     </mat-expansion-panel-header>
     <mat-list>
       <div *ngFor="let upcomingTask of upcomingTasks">
-        <mat-list-item>
+        <mat-list-item (click)="checkRow(upcomingTask)">
           <i class="material-icons">star</i>
           {{ upcomingTask.name }}
           <span class="details">

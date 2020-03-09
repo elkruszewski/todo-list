@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { AddTaskModalComponent } from "./add-task-modal/add-task-modal.component";
 import { formatDate } from "@angular/common";
 import { Task } from "../models/task";
+import { TaskService } from "./todo-list.service";
 
 @Component({
   selector: "app-todo-list",
@@ -16,17 +17,21 @@ export class TodoListComponent implements OnInit {
   todayTasks: Task[] = [];
   tomorrowTasks: Task[] = [];
   upcomingTasks: Task[] = [];
+  public tasks = ["New Tasks", "Today", "Upcoming"];
+  public tasksContent: Task[] = [];
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private taskService: TaskService) {
     this.tomorrow.setDate(this.today.getDate() + 1);
   }
 
-  public tasks = ["New Tasks", "Today", "Upcoming"];
-  public tasksContent;
   ngOnInit(): void {
+    this.taskService.getTasks().subscribe((value: Task[]) => {
+      this.tasksContent = value;
+    });
+
     this.today = formatDate(new Date(), "yyyy/MM/dd", "en");
     this.tomorrow = formatDate(this.tomorrow, "yyyy/MM/dd", "en");
-    this.tasksContent = TASK_MOCK.content;
+
     this.checkTodayTasks();
     this.checkTomorrowTasks();
     this.checkUpcomingTasks();
@@ -72,5 +77,9 @@ export class TodoListComponent implements OnInit {
     } else if (topic === "Programming") {
       return "warn";
     } else return "black";
+  }
+
+  checkRow(upcomingTask) {
+    console.log("klikniete", upcomingTask);
   }
 }

@@ -18,7 +18,6 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 
-console.log("zaladowano modul");
 @NgModule({
   declarations: [AddTaskModalComponent],
   imports: [
