@@ -16,6 +16,7 @@ import { TodoListModule } from "./todo-list/todo-list.module";
     BrowserAnimationsModule,
     TodoListModule
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })

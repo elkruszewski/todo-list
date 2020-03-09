@@ -1,22 +1,109 @@
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let task of tasks">
+<div class="example-button-row">
+  <button mat-raised-button color="primary" (click)="openDialog()">
+    Dodaj Zadanie
+  </button>
+  <button mat-raised-button color="accent">Accent</button>
+</div>
+
+<mat-accordion [multi]="true">
+  <mat-expansion-panel [expanded]="true">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ task }}
+        Dzisiaj
       </mat-panel-title>
     </mat-expansion-panel-header>
     <mat-list>
-      <div *ngFor="let taskContent of tasksContent">
+      <div *ngFor="let todayTask of todayTasks">
         <mat-list-item>
-          <i class="material-icons" color="yellow">star</i>
-          {{ taskContent.name }}
-          <mat-chip-list>
-            <mat-chip color="primary">{{ taskContent.taskTopic }}</mat-chip>
-          </mat-chip-list>
-          {{ taskContent.deadline }}
+          <i class="material-icons">star</i>
+          {{ todayTask.name }}
+          <span class="details">
+            <mat-chip-list>
+              <mat-chip [color]="returnColor(todayTask.taskTopic)" selected>{{
+                todayTask.taskTopic
+              }}</mat-chip>
+            </mat-chip-list>
+            {{ todayTask.deadline }}
+          </span>
         </mat-list-item>
+
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Jutro
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-list>
+      <div *ngFor="let tomorrowTask of tomorrowTasks">
+        <mat-list-item>
+          <i class="material-icons">star</i>
+          {{ tomorrowTask.name }}
+          <span class="details">
+            <mat-chip-list>
+              <mat-chip
+                [color]="returnColor(tomorrowTask.taskTopic)"
+                selected
+                >{{ tomorrowTask.taskTopic }}</mat-chip
+              >
+            </mat-chip-list>
+            {{ tomorrowTask.deadline }}
+          </span>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Nadchodzące
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <div *ngFor="let upcomingTask of upcomingTasks">
+        <mat-list-item>
+          <i class="material-icons">star</i>
+          {{ upcomingTask.name }}
+          <span class="details">
+            <mat-chip-list>
+              <mat-chip
+                [color]="returnColor(upcomingTask.taskTopic)"
+                selected
+                >{{ upcomingTask.taskTopic }}</mat-chip
+              >
+            </mat-chip-list>
+            {{ upcomingTask.deadline }}
+          </span>
+        </mat-list-item>
+
         <mat-divider></mat-divider>
       </div>
     </mat-list>
   </mat-expansion-panel>
 </mat-accordion>
+
+<!-- <mat-list>
+      <div *ngFor="let taskContent of tasksContent">
+        <mat-list-item>
+          <i class="material-icons">star</i>
+          {{ taskContent.name }}
+          <span class="details">
+            <mat-chip-list>
+              <mat-chip [color]="returnColor(taskContent.taskTopic)" selected>{{
+                taskContent.taskTopic
+              }}</mat-chip>
+            </mat-chip-list>
+            {{ taskContent.deadline }}
+          </span>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list> -->
