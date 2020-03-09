@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Task } from "src/app/models/task";
 import { formatDate } from "@angular/common";
+import { TaskService } from "../todo-list.service";
 @Component({
   selector: "app-add-task-modal",
   templateUrl: "./add-task-modal.component.html",
@@ -14,7 +15,8 @@ export class AddTaskModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddTaskModalComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private addTaskService: TaskService
   ) {
     this.createForm();
   }
@@ -42,6 +44,7 @@ export class AddTaskModalComponent implements OnInit {
       taskTopic: this.form.get("taskTopic").value
     };
 
+    this.addTaskService.addTask(taskObject);
     this.dialogRef.close(taskObject);
   }
 }

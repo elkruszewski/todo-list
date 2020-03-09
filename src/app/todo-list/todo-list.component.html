@@ -2,7 +2,6 @@
   <button mat-raised-button color="primary" (click)="openDialog()">
     Dodaj Zadanie
   </button>
-  <button mat-raised-button color="accent">Accent</button>
 </div>
 
 <mat-accordion [multi]="true">
@@ -87,23 +86,29 @@
       </div>
     </mat-list>
   </mat-expansion-panel>
-</mat-accordion>
-
-<!-- <mat-list>
-      <div *ngFor="let taskContent of tasksContent">
-        <mat-list-item>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Nowe
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <div *ngFor="let newTask of newTasks">
+        <mat-list-item (click)="checkRow(newTask)">
           <i class="material-icons">star</i>
-          {{ taskContent.name }}
+          {{ newTask.name }}
           <span class="details">
             <mat-chip-list>
-              <mat-chip [color]="returnColor(taskContent.taskTopic)" selected>{{
-                taskContent.taskTopic
+              <mat-chip [color]="returnColor(newTask.taskTopic)" selected>{{
+                newTask.taskTopic
               }}</mat-chip>
             </mat-chip-list>
-            {{ taskContent.deadline }}
+            {{ newTask.deadline }}
           </span>
         </mat-list-item>
 
         <mat-divider></mat-divider>
       </div>
-    </mat-list> -->
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

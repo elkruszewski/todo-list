@@ -17,6 +17,7 @@ export class TodoListComponent implements OnInit {
   todayTasks: Task[] = [];
   tomorrowTasks: Task[] = [];
   upcomingTasks: Task[] = [];
+  newTasks: Task[] = [];
   public tasks = ["New Tasks", "Today", "Upcoming"];
   public tasksContent: Task[] = [];
 
@@ -47,7 +48,9 @@ export class TodoListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("The dialog was closed", result);
+      this.taskService.getNewTasks().subscribe(val => {
+        this.newTasks = val;
+      });
     });
   }
 
