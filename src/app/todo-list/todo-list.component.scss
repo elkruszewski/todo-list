@@ -1,0 +1,33 @@
+mat-chip {
+  justify-content: space-between;
+  background-color: green($color: #123145);
+}
+
+.details {
+  position: absolute;
+  display: inherit;
+  right: 16px;
+}
+
+.material-icons {
+  color: #ffd700;
+}
+
+.topic {
+  background-color: coral;
+}
+
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.example-button-row {
+  padding: 5px;
+}
