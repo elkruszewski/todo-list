@@ -13,9 +13,17 @@
     </mat-expansion-panel-header>
     <mat-list>
       <div *ngFor="let todayTask of todayTasks">
-        <mat-list-item (click)="checkRow(todayTask)">
-          <i class="material-icons">star</i>
+        <mat-list-item>
+          <i class="material-icons star">star</i>
           {{ todayTask.name }}
+          <button mat-icon-button>
+            <mat-icon (click)="edit(todayTask.id)" color="black">edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon (click)="delete(todayTask.id)" color="black"
+              >delete</mat-icon
+            >
+          </button>
           <span class="details">
             <mat-chip-list>
               <mat-chip [color]="returnColor(todayTask.taskTopic)" selected>{{
@@ -39,9 +47,19 @@
 
     <mat-list>
       <div *ngFor="let tomorrowTask of tomorrowTasks">
-        <mat-list-item (click)="checkRow(tomorrowTask)">
-          <i class="material-icons">star</i>
+        <mat-list-item>
+          <i class="material-icons star">star</i>
           {{ tomorrowTask.name }}
+          <button mat-icon-button>
+            <mat-icon (click)="edit(tomorrowTask.id)" color="black"
+              >edit</mat-icon
+            >
+          </button>
+          <button mat-icon-button>
+            <mat-icon (click)="delete(tomorrowTask.id)" color="black"
+              >delete</mat-icon
+            >
+          </button>
           <span class="details">
             <mat-chip-list>
               <mat-chip
@@ -67,9 +85,20 @@
     </mat-expansion-panel-header>
     <mat-list>
       <div *ngFor="let upcomingTask of upcomingTasks">
-        <mat-list-item (click)="checkRow(upcomingTask)">
-          <i class="material-icons">star</i>
+        <mat-list-item>
+          <i class="material-icons star">star</i>
           {{ upcomingTask.name }}
+          <button mat-icon-button>
+            <mat-icon (click)="edit(upcomingTask.id)" color="black"
+              >edit</mat-icon
+            >
+          </button>
+          <button mat-icon-button>
+            <mat-icon (click)="delete(upcomingTask.id)" color="black"
+              >delete</mat-icon
+            >
+          </button>
+
           <span class="details">
             <mat-chip-list>
               <mat-chip
@@ -94,9 +123,17 @@
     </mat-expansion-panel-header>
     <mat-list>
       <div *ngFor="let newTask of newTasks">
-        <mat-list-item (click)="checkRow(newTask)">
-          <i class="material-icons">star</i>
+        <mat-list-item>
+          <i class="material-icons star">star</i>
           {{ newTask.name }}
+          <button mat-icon-button>
+            <mat-icon (click)="edit(newTask.id)" color="black">edit</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon (click)="delete(newTask.id)" color="black"
+              >delete</mat-icon
+            >
+          </button>
           <span class="details">
             <mat-chip-list>
               <mat-chip [color]="returnColor(newTask.taskTopic)" selected>{{

@@ -17,9 +17,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
+import { EditTaskModalComponent } from './edit-task-modal/edit-task-modal.component';
 
 @NgModule({
-  declarations: [AddTaskModalComponent],
+  declarations: [AddTaskModalComponent, EditTaskModalComponent],
   imports: [
     CommonModule,
     MatExpansionModule,

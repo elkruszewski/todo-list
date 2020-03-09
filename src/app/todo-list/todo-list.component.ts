@@ -5,6 +5,7 @@ import { AddTaskModalComponent } from "./add-task-modal/add-task-modal.component
 import { formatDate } from "@angular/common";
 import { Task } from "../models/task";
 import { TaskService } from "./todo-list.service";
+import { EditTaskModalComponent } from "./edit-task-modal/edit-task-modal.component";
 
 @Component({
   selector: "app-todo-list",
@@ -26,16 +27,7 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((value: Task[]) => {
-      this.tasksContent = value;
-    });
-
-    this.today = formatDate(new Date(), "yyyy/MM/dd", "en");
-    this.tomorrow = formatDate(this.tomorrow, "yyyy/MM/dd", "en");
-
-    this.checkTodayTasks();
-    this.checkTomorrowTasks();
-    this.checkUpcomingTasks();
+    this.getData();
   }
 
   addTask() {
@@ -82,7 +74,28 @@ export class TodoListComponent implements OnInit {
     } else return "black";
   }
 
-  checkRow(upcomingTask) {
-    console.log("klikniete", upcomingTask);
+  edit(id) {
+    const dialogRef = this.dialog.open(EditTaskModalComponent, {
+      width: "250px",
+      data: { ...this.taskService.getTask(id) }
+    });
+  }
+
+  delete(id) {
+    this.taskService.deleteTask(id);
+    this.getData();
+  }
+
+  getData() {
+    this.taskService.getTasks().subscribe((value: Task[]) => {
+      this.tasksContent = value;
+    });
+
+    this.today = formatDate(new Date(), "yyyy/MM/dd", "en");
+    this.tomorrow = formatDate(this.tomorrow, "yyyy/MM/dd", "en");
+
+    this.checkTodayTasks();
+    this.checkTomorrowTasks();
+    this.checkUpcomingTasks();
   }
 }
