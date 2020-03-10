@@ -17,10 +17,15 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
-import { EditTaskModalComponent } from './edit-task-modal/edit-task-modal.component';
+import { EditTaskModalComponent } from "./edit-task-modal/edit-task-modal.component";
+import { ConfirmationModalComponent } from "./confirmation-modal/confirmation-modal.component";
 
 @NgModule({
-  declarations: [AddTaskModalComponent, EditTaskModalComponent],
+  declarations: [
+    AddTaskModalComponent,
+    EditTaskModalComponent,
+    ConfirmationModalComponent
+  ],
   imports: [
     CommonModule,
     MatExpansionModule,
@@ -58,8 +63,9 @@ import { EditTaskModalComponent } from './edit-task-modal/edit-task-modal.compon
     FormsModule,
     AddTaskModalComponent,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ConfirmationModalComponent
   ],
-  entryComponents: [AddTaskModalComponent]
+  entryComponents: [AddTaskModalComponent, ConfirmationModalComponent]
 })
 export class TodoListModule {}

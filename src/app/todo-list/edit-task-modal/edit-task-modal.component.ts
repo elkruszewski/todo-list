@@ -37,7 +37,7 @@ export class EditTaskModalComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: [this.data.id],
       name: [this.data.name],
-      deadline: [this.data.deadline],
+      deadline: [new Date(this.data.deadline)],
       taskTopic: [this.data.taskTopic]
     });
   }

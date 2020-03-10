@@ -10,20 +10,10 @@ const routes: Routes = [
 
   {
     path: "",
-    redirectTo: "",
+    redirectTo: "todo-list",
     pathMatch: "full"
   }
 ];
-
-//   {
-//     path: "todo-list",
-//     loadChildren: "./components/todo-list/todo-list.module#TodoListModule"
-//   },
-//   {
-//     path: "todo-detail",
-//     loadChildren: "./components/todo-detail/todo-detail.module#TodoDetailModule"
-//   }
-// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

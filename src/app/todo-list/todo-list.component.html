@@ -126,14 +126,6 @@
         <mat-list-item>
           <i class="material-icons star">star</i>
           {{ newTask.name }}
-          <button mat-icon-button>
-            <mat-icon (click)="edit(newTask.id)" color="black">edit</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon (click)="delete(newTask.id)" color="black"
-              >delete</mat-icon
-            >
-          </button>
           <span class="details">
             <mat-chip-list>
               <mat-chip [color]="returnColor(newTask.taskTopic)" selected>{{

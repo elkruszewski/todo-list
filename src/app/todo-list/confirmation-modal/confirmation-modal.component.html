@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+  <button type="button" class="close" aria-label="Close" (click)="decline()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <p>Czy na pewno chcesz usunąć zadanie?</p>
+</div>
+<div class="buttons" mat-dialog-actions>
+  <button type="button" class="btn btn-danger decline" (click)="decline()">
+    Nie
+  </button>
+  <button type="button" class="btn btn-primary accept" (click)="accept()">
+    Tak
+  </button>
+</div>

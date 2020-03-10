@@ -6,6 +6,8 @@ import { formatDate } from "@angular/common";
 import { Task } from "../models/task";
 import { TaskService } from "./todo-list.service";
 import { EditTaskModalComponent } from "./edit-task-modal/edit-task-modal.component";
+import { CompileShallowModuleMetadata } from "@angular/compiler";
+import { ConfirmationModalComponent } from "./confirmation-modal/confirmation-modal.component";
 
 @Component({
   selector: "app-todo-list",
@@ -42,6 +44,7 @@ export class TodoListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.taskService.getNewTasks().subscribe(val => {
         this.newTasks = val;
+        this.getData();
       });
     });
   }
@@ -79,11 +82,24 @@ export class TodoListComponent implements OnInit {
       width: "250px",
       data: { ...this.taskService.getTask(id) }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("result", result);
+      this.taskService.editTask(result);
+      this.getData();
+    });
   }
 
   delete(id) {
-    this.taskService.deleteTask(id);
-    this.getData();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      width: "250px"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.taskService.deleteTask(id);
+        this.getData();
+      }
+    });
   }
 
   getData() {
