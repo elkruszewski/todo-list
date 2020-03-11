@@ -4,7 +4,7 @@ export const TASK_MOCK: Task[] = [
   {
     id: 1,
     name: "Przygotowania panelu logowania na telefony komórkowe",
-    deadline: "2020/03/09",
+    deadline: "2020/03/11",
     taskTopic: "Mobile"
   },
   {
@@ -28,13 +28,13 @@ export const TASK_MOCK: Task[] = [
   {
     id: 5,
     name: "Rozmowa telefoniczna",
-    deadline: "2020/03/11",
+    deadline: "2020/03/12",
     taskTopic: "HR"
   },
   {
     id: 6,
     name: "Projekt makiety",
-    deadline: "2020/03/11",
+    deadline: "2020/03/25",
     taskTopic: "Programming"
   },
   {

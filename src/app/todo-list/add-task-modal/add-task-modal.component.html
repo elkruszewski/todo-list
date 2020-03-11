@@ -26,7 +26,12 @@
     <button mat-raised-button color="warn" (click)="onNoClick()">
       Nie, dzięki
     </button>
-    <button mat-raised-button color="primary" (click)="send()">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.get('name').value || !form.get('deadline').value"
+      (click)="send()"
+    >
       Dodaj
     </button>
   </div>

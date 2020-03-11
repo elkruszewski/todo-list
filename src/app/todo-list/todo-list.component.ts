@@ -1,26 +1,24 @@
-import { Component, OnInit } from "@angular/core";
-import { TASK_MOCK } from "src/app/tasks-mock";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { AddTaskModalComponent } from "./add-task-modal/add-task-modal.component";
 import { formatDate } from "@angular/common";
 import { Task } from "../models/task";
 import { TaskService } from "./todo-list.service";
-import { EditTaskModalComponent } from "./edit-task-modal/edit-task-modal.component";
-import { CompileShallowModuleMetadata } from "@angular/compiler";
-import { ConfirmationModalComponent } from "./confirmation-modal/confirmation-modal.component";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-todo-list",
   templateUrl: "./todo-list.component.html",
   styleUrls: ["./todo-list.component.scss"]
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
   today: any = new Date();
   tomorrow: any = new Date();
   todayTasks: Task[] = [];
   tomorrowTasks: Task[] = [];
   upcomingTasks: Task[] = [];
   newTasks: Task[] = [];
+  private subscription = new Subscription();
   public tasks = ["New Tasks", "Today", "Upcoming"];
   public tasksContent: Task[] = [];
 
@@ -30,6 +28,12 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    this.subscription.add(
+      this.taskService.changeData.subscribe(val => {
+        console.log("subject");
+        this.getData();
+      })
+    );
   }
 
   addTask() {
@@ -50,9 +54,14 @@ export class TodoListComponent implements OnInit {
   }
 
   checkTodayTasks() {
-    this.todayTasks = this.tasksContent.filter(
+    const todayTasks = this.tasksContent.filter(
       val => val.deadline === this.today
     );
+    const outStandingTasks = this.tasksContent.filter(
+      val => val.deadline < this.today
+    );
+
+    this.todayTasks = [...outStandingTasks, ...todayTasks];
   }
 
   checkTomorrowTasks() {
@@ -62,50 +71,21 @@ export class TodoListComponent implements OnInit {
   }
 
   checkUpcomingTasks() {
-    this.upcomingTasks = this.tasksContent
-      .filter(val => val.deadline !== this.today)
-      .filter(value => value.deadline !== this.tomorrow);
-  }
-
-  returnColor(topic) {
-    if (topic === "Mobile") {
-      return "accent";
-    } else if (topic === "Sales") {
-      return "primary";
-    } else if (topic === "Programming") {
-      return "warn";
-    } else return "black";
-  }
-
-  edit(id) {
-    const dialogRef = this.dialog.open(EditTaskModalComponent, {
-      width: "250px",
-      data: { ...this.taskService.getTask(id) }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("result", result);
-      this.taskService.editTask(result);
-      this.getData();
-    });
-  }
-
-  delete(id) {
-    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
-      width: "250px"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.taskService.deleteTask(id);
-        this.getData();
-      }
-    });
+    console.log(this.tasksContent);
+    const todayTomorrowTasks = [...this.todayTasks, ...this.tomorrowTasks];
+    this.upcomingTasks = this.tasksContent.filter(
+      value => !todayTomorrowTasks.includes(value)
+    );
   }
 
   getData() {
-    this.taskService.getTasks().subscribe((value: Task[]) => {
-      this.tasksContent = value;
-    });
+    this.taskService.getTasks().subscribe(
+      (value: Task[]) => {
+        this.tasksContent = value;
+      },
+      () => {},
+      () => this.sortDatabyDate()
+    );
 
     this.today = formatDate(new Date(), "yyyy/MM/dd", "en");
     this.tomorrow = formatDate(this.tomorrow, "yyyy/MM/dd", "en");
@@ -113,5 +93,24 @@ export class TodoListComponent implements OnInit {
     this.checkTodayTasks();
     this.checkTomorrowTasks();
     this.checkUpcomingTasks();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  sortDatabyDate() {
+    const prepareSortData: any = this.tasksContent.map(value => ({
+      ...value,
+      deadline: new Date(value.deadline)
+    }));
+    const sortedActivities = prepareSortData.sort(
+      (a, b) => a.deadline - b.deadline
+    );
+
+    this.tasksContent = sortedActivities.map(value => ({
+      ...value,
+      deadline: formatDate(value.deadline, "yyyy/MM/dd", "en")
+    }));
   }
 }

@@ -1,9 +1,5 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA
-} from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Task } from "src/app/models/task";
 import { formatDate } from "@angular/common";

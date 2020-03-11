@@ -1,0 +1,31 @@
+<mat-expansion-panel [expanded]="expanded">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ title }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-list>
+    <div *ngFor="let task of tasks">
+      <mat-list-item>
+        <i class="material-icons star">star</i>
+        {{ task.name }}
+        <button mat-icon-button>
+          <mat-icon (click)="edit(task.id)" color="black">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon (click)="delete(task.id)" color="black">delete</mat-icon>
+        </button>
+        <span class="details">
+          <mat-chip-list class="chip">
+            <mat-chip [color]="returnColor(task.taskTopic)" selected>{{
+              task.taskTopic
+            }}</mat-chip>
+          </mat-chip-list>
+          {{ task.deadline }}
+        </span>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+</mat-expansion-panel>

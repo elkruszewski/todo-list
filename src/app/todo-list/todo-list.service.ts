@@ -1,19 +1,21 @@
 import { TASK_MOCK } from "../tasks-mock";
-import { of, Observable } from "rxjs";
+import { of, Observable, Subject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { Task } from "../models/task";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 @Injectable({
   providedIn: "root"
 })
 export class TaskService {
   public newTasks: Task[] = [];
+  public allTasks = TASK_MOCK;
+  public changeData = new Subject();
   constructor() {}
 
   getTasks() {
-    const allTasks = [...TASK_MOCK, ...this.newTasks];
-    return of(allTasks);
+    this.allTasks = [...this.allTasks, ...this.newTasks];
+
+    return of(this.allTasks);
   }
 
   getTask(id: number): Task {
@@ -23,16 +25,16 @@ export class TaskService {
   editTask(task: Task) {
     const editedTask = TASK_MOCK.find(x => x.id == task.id);
     const index = TASK_MOCK.indexOf(editedTask);
-    TASK_MOCK[index] = task;
+
+    this.allTasks[index] = task;
   }
 
   deleteTask(id) {
-    const deletedTask = TASK_MOCK.find(x => x.id == id);
-    console.log("deletedTask", deletedTask);
-
-    const index = TASK_MOCK.indexOf(deletedTask);
-    console.log("index", index);
-    TASK_MOCK.splice(index, 1);
+    const deletedTask = this.allTasks.find(x => x.id == id);
+    const index = this.allTasks.indexOf(deletedTask);
+    const newTasksIndex = this.newTasks.indexOf(deletedTask);
+    this.allTasks.splice(index, 1);
+    this.newTasks.splice(newTasksIndex, 1);
   }
 
   addTask(response) {

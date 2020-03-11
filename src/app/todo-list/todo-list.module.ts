@@ -19,12 +19,14 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { EditTaskModalComponent } from "./edit-task-modal/edit-task-modal.component";
 import { ConfirmationModalComponent } from "./confirmation-modal/confirmation-modal.component";
+import { AppSectionComponent } from "./commons/app-section/app-section.component";
 
 @NgModule({
   declarations: [
     AddTaskModalComponent,
     EditTaskModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    AppSectionComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,8 @@ import { ConfirmationModalComponent } from "./confirmation-modal/confirmation-mo
     AddTaskModalComponent,
     MatDatepickerModule,
     MatNativeDateModule,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    AppSectionComponent
   ],
   entryComponents: [AddTaskModalComponent, ConfirmationModalComponent]
 })

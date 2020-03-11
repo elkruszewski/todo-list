@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatDialogRef } from "@angular/material/dialog";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Task } from "src/app/models/task";
 import { formatDate } from "@angular/common";
@@ -31,8 +31,8 @@ export class AddTaskModalComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: [null],
       name: [null],
-      deadline: [null],
-      taskTopic: [null]
+      deadline: [new Date()],
+      taskTopic: ["Programming"]
     });
   }
 

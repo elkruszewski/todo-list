@@ -1,0 +1,18 @@
+mat-chip {
+  justify-content: space-between;
+  background-color: green($color: #123145);
+}
+
+.details {
+  position: absolute;
+  display: inherit;
+  right: 16px;
+}
+
+.star {
+  color: #ffd700;
+}
+
+.chip {
+  margin-right: 10px;
+}
