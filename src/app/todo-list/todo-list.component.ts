@@ -42,7 +42,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddTaskModalComponent, {
-      width: "250px"
+      width: "500px"
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -95,10 +95,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.checkUpcomingTasks();
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
   sortDatabyDate() {
     const prepareSortData: any = this.tasksContent.map(value => ({
       ...value,
@@ -112,5 +108,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
       ...value,
       deadline: formatDate(value.deadline, "yyyy/MM/dd", "en")
     }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

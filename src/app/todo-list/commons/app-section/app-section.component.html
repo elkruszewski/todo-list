@@ -4,6 +4,7 @@
       {{ title }}
     </mat-panel-title>
   </mat-expansion-panel-header>
+
   <mat-list>
     <div *ngFor="let task of tasks">
       <mat-list-item>
@@ -24,7 +25,6 @@
           {{ task.deadline }}
         </span>
       </mat-list-item>
-
       <mat-divider></mat-divider>
     </div>
   </mat-list>

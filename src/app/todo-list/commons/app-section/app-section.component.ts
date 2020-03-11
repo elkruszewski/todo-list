@@ -30,7 +30,7 @@ export class AppSectionComponent implements OnInit {
 
   edit(id) {
     const dialogRef = this.dialog.open(EditTaskModalComponent, {
-      width: "250px",
+      width: "500px",
       data: { ...this.taskService.getTask(id) }
     });
 
@@ -43,7 +43,7 @@ export class AppSectionComponent implements OnInit {
 
   delete(id) {
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
-      width: "250px"
+      width: "350px"
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

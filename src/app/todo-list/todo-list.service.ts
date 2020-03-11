@@ -19,14 +19,16 @@ export class TaskService {
   }
 
   getTask(id: number): Task {
-    return TASK_MOCK.find(x => x.id == id);
+    return this.allTasks.find(x => x.id == id);
   }
 
   editTask(task: Task) {
-    const editedTask = TASK_MOCK.find(x => x.id == task.id);
-    const index = TASK_MOCK.indexOf(editedTask);
+    const editedTask = this.allTasks.find(x => x.id == task.id);
+    const index = this.allTasks.indexOf(editedTask);
+    const editetTaskIndex = this.newTasks.indexOf(editedTask);
 
-    this.allTasks[index] = task;
+    this.allTasks.splice(index, 1);
+    this.newTasks[editetTaskIndex] = task;
   }
 
   deleteTask(id) {

@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "~bootstrap/dist/css/bootstrap.min.css";
 html,
 body {
   height: 100%;
@@ -22,4 +22,26 @@ body {
   font-size: 8pt;
   float: right;
   margin: 8px;
+}
+
+@media screen and (max-width: 1060px) {
+  #primary {
+    width: 67%;
+  }
+  #secondary {
+    width: 30%;
+    margin-left: 3%;
+  }
+}
+
+/* Media Queries: Tabled Portrait */
+@media screen and (max-width: 768px) {
+  #primary {
+    width: 100%;
+  }
+  #secondary {
+    width: 100%;
+    margin: 0;
+    border: none;
+  }
 }

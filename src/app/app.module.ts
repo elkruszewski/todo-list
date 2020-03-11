@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TodoListComponent } from "./todo-list/todo-list.component";
 import { TodoListDetailsComponent } from "./todo-list/todo-list-details/todo-list-details.component";
 import { TodoListModule } from "./todo-list/todo-list.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [AppComponent, TodoListComponent, TodoListDetailsComponent],
@@ -14,7 +15,8 @@ import { TodoListModule } from "./todo-list/todo-list.module";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    TodoListModule
+    TodoListModule,
+    FlexLayoutModule
   ],
   exports: [],
   providers: [],

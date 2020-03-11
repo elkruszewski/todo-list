@@ -3,9 +3,10 @@
     Dodaj Zadanie
   </button>
 </div>
+
 <mat-accordion [multi]="true">
   <app-section [tasks]="todayTasks" title="Dzisiaj"></app-section>
   <app-section [tasks]="tomorrowTasks" title="Jutro"></app-section>
   <app-section [tasks]="upcomingTasks" title="Nadchodzące"></app-section>
-  <app-section [tasks]="newTasks" title="Nadchodzące"></app-section>
+  <app-section [tasks]="newTasks" title="Nowe"></app-section>
 </mat-accordion>

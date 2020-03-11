@@ -1,5 +1,3 @@
-.accept {
-}
 .buttons {
   display: flex;
   align-items: center;
@@ -8,4 +6,10 @@
 
 .decline {
   margin-right: 5px;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
