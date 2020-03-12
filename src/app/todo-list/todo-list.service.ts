@@ -25,10 +25,14 @@ export class TaskService {
   editTask(task: Task) {
     const editedTask = this.allTasks.find(x => x.id == task.id);
     const index = this.allTasks.indexOf(editedTask);
-    const editetTaskIndex = this.newTasks.indexOf(editedTask);
+    const editedTaskIndex = this.newTasks.indexOf(editedTask);
+    this.allTasks[index] = task;
 
+    if (editedTaskIndex == -1) {
+      return;
+    }
+    this.newTasks[editedTaskIndex] = task;
     this.allTasks.splice(index, 1);
-    this.newTasks[editetTaskIndex] = task;
   }
 
   deleteTask(id) {

@@ -35,7 +35,6 @@ export class AppSectionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("result", result);
       this.taskService.editTask(result);
       this.taskService.changeData.next(true);
     });

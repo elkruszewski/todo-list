@@ -30,7 +30,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.getData();
     this.subscription.add(
       this.taskService.changeData.subscribe(val => {
-        console.log("subject");
         this.getData();
       })
     );
@@ -71,7 +70,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   checkUpcomingTasks() {
-    console.log(this.tasksContent);
     const todayTomorrowTasks = [...this.todayTasks, ...this.tomorrowTasks];
     this.upcomingTasks = this.tasksContent.filter(
       value => !todayTomorrowTasks.includes(value)
